@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using eShop.CoreBusiness.Models;
+using eShop.UseCases.PluginInterfaces.DataStore;
 
 namespace eShop.UseCases.SearchProductScreen
 {
-    public Product Execute(string filter)
+    public class ViewProduct : IViewProduct
     {
-        return null;
+        private readonly IProductRepository productRepository;
+
+        public ViewProduct(IProductRepository productRepository) {
+            this.productRepository = productRepository;
+        }
+        public Product Execute(int id)
+        {
+            return productRepository.GetProduct(id);
+        }
     }
 }
